@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBynMGSywbFxEOSxrFZxC6SlB3_Ajsc24w",
@@ -43,13 +50,14 @@ const addBookForm = document.querySelector(".add");
 addBookForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // Get data
-
-  // Add book
-  addDoc(colRef, {
+  // Get Data
+  const dataToAdd = {
     title: addBookForm.title.value,
     author: addBookForm.author.value,
-  }).then(() => {
+  };
+
+  // Add book
+  addDoc(colRef, dataToAdd).then(() => {
     addBookForm.reset(); // Reset the form
   });
 });
@@ -58,4 +66,12 @@ addBookForm.addEventListener("submit", (e) => {
 const deleteBookForm = document.querySelector(".delete");
 deleteBookForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const docRef = doc(db, "books", deleteBookForm.id.value); // Get document reference
+
+  // Delete
+  deleteDoc(docRef).then(() => {
+    // Reset form
+    deleteBookForm.reset();
+  });
 });
