@@ -26,3 +26,7 @@
 - Fetch data from database into the console
 
 ### 4) : Adding and deleting documents from frontend
+
+- Create form in index.html for adding doc
+- Add database adding logic
+- Add documents
