@@ -49,3 +49,9 @@
 - order data by some field
 - Create timestamps
 - order by timestamp
+
+### 8) : Getting single document
+
+- Make doc ref
+- get doc
+- Subscribing to a document
