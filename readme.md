@@ -30,3 +30,12 @@
 - Create form in index.html for adding doc
 - Add database adding logic
 - Add documents
+
+- Create form in index.html for deleting doc
+- Add database delete logic
+- Delete Docs
+
+### 5) : Add realtime listener (Subscription) logic to app
+
+- Change function from getDocs to onSnapshot
+- Write the logic
