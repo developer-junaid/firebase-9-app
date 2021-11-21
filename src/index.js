@@ -11,6 +11,7 @@ import {
   orderBy,
   serverTimestamp,
   getDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -22,19 +23,19 @@ const firebaseConfig = {
   appId: "1:895584093654:web:58a514273488a75356d077",
 };
 
-// init firebase app
+// * init firebase app
 initializeApp(firebaseConfig);
 
-// init services
+// * init services
 const db = getFirestore(); // initialize firestore service
 
-// collection ref
+// * collection ref
 const colRef = collection(db, "books"); // collection(database, collectionName)
 
-// Queries
+// * Queries
 const q = query(colRef, orderBy("createdAt"));
 
-// Realtime collection data
+// * Realtime collection data
 onSnapshot(q, (snapshot) => {
   // Run everytime a collection "q" changes
   let books = [];
@@ -50,7 +51,7 @@ onSnapshot(q, (snapshot) => {
   console.log("data", books);
 });
 
-// Adding documents
+// * Adding documents
 const addBookForm = document.querySelector(".add");
 addBookForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -65,7 +66,7 @@ addBookForm.addEventListener("submit", (e) => {
   });
 });
 
-// Deleting documents
+// * Deleting documents
 const deleteBookForm = document.querySelector(".delete");
 deleteBookForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -79,7 +80,21 @@ deleteBookForm.addEventListener("submit", (e) => {
   });
 });
 
-// Get single doc
+// * Updating documents
+const updateBookForm = document.querySelector(".update");
+updateBookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const docRef = doc(db, "books", updateBookForm.id.value);
+
+  updateDoc(docRef, {
+    title: "updated title",
+  }).then(() => {
+    updateBookForm.reset();
+  });
+});
+
+// * Get single doc
 const docRef = doc(db, "books", "oS9SHYK9YEg26a4G4tHf");
 
 // Realtime doc data

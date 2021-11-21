@@ -55,3 +55,8 @@
 - Make doc ref
 - get doc
 - Subscribing to a document
+
+### 9) : Update/Edit documents
+
+- Get Reference
+- Update doc
