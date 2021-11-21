@@ -70,3 +70,10 @@
 - Click save
 
 - setup auth
+
+### 11) : Sign Up users
+
+- Create signup form
+- Attack event listener
+
+### 12) : Login Users
