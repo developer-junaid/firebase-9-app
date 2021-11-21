@@ -43,3 +43,9 @@
 ### 6) : Querying particular data
 
 - Change collection ref to query ref
+
+### 7) : Ordering Data and Timestamps
+
+- order data by some field
+- Create timestamps
+- order by timestamp
