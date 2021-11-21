@@ -39,3 +39,7 @@
 
 - Change function from getDocs to onSnapshot
 - Write the logic
+
+### 6) : Querying particular data
+
+- Change collection ref to query ref

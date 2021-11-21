@@ -6,6 +6,8 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -26,9 +28,12 @@ const db = getFirestore(); // initialize firestore service
 // collection ref
 const colRef = collection(db, "books"); // collection(database, collectionName)
 
+// Queries
+const q = query(colRef, where("author", "==", "Jamie lanister"));
+
 // Realtime collection data
-onSnapshot(colRef, (snapshot) => {
-  // Run everytime a collection changes
+onSnapshot(q, (snapshot) => {
+  // Run everytime a collection "q" changes
   let books = [];
 
   // Get data we want
