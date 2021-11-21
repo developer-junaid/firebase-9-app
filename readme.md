@@ -60,3 +60,13 @@
 
 - Get Reference
 - Update doc
+
+### 10) : Authentication
+
+- Go to firebase-console then Authentication
+- Click Get Started
+- Click email/password
+- Click enable switch
+- Click save
+
+- setup auth
