@@ -76,10 +76,9 @@
 - Create signup form
 - Attack event listener
 
-### 12) : Logout Users
+### 12) : Login and Logout Users
 
 - Create login form and logout button
 - Setup event listeners
 - Call logout function
-
-### 13) : Login Users
+-
