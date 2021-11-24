@@ -81,4 +81,12 @@
 - Create login form and logout button
 - Setup event listeners
 - Call logout function
--
+- Call login function
+
+### 13) : Setup Auth subscription
+
+- onAuthStateChanged setup
+
+### 14) : Unsubscribe from db/auth changes
+
+- unsub

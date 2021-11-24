@@ -13,11 +13,14 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
+
+// Auth
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -43,7 +46,7 @@ const colRef = collection(db, "books"); // collection(database, collectionName)
 const q = query(colRef, orderBy("createdAt"));
 
 // * Realtime collection data
-onSnapshot(q, (snapshot) => {
+const unsubCol = onSnapshot(q, (snapshot) => {
   // Run everytime a collection "q" changes
   let books = [];
 
@@ -131,6 +134,7 @@ loginForm.addEventListener("submit", (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((cred) => {
       console.log("User signed in: ", cred.user);
+      loginForm.reset();
     })
     .catch((err) => {
       console.log(err.message);
@@ -154,8 +158,23 @@ logoutForm.addEventListener("click", (e) => {
 // * Get single doc
 const docRef = doc(db, "books", "oS9SHYK9YEg26a4G4tHf");
 
-// Realtime doc data
-onSnapshot(docRef, (doc) => {
+// * Realtime doc data
+const unsubDoc = onSnapshot(docRef, (doc) => {
   // Each time doc changes
   console.log(doc.data(), doc.id);
+});
+
+// * Subscribing to auth changes
+const unsubAuth = onAuthStateChanged(auth, (user) => {
+  // Example: Login, signup, logout
+  console.log("user status changed: ", user);
+});
+
+// * Unsub
+const unsubButton = document.querySelector(".unsub");
+
+unsubButton.addEventListener("click", () => {
+  unsubCol();
+  unsubDoc();
+  unsubAuth();
 });
